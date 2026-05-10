@@ -8,6 +8,7 @@
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![Midtrans](https://img.shields.io/badge/Midtrans-Payment-003B57?style=for-the-badge)
 ![REST API](https://img.shields.io/badge/REST-API-009688?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-In_Development-orange?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 A full-featured web platform for managing Umrah & Hajj travel packages, online registration, payments, and a companion mobile app backend.
@@ -195,7 +196,7 @@ GET    /api/content/berita      # News feed
 
 ## 📸 Screenshots
 
-> *Coming soon — add your app screenshots here*
+> 🚧 This project is currently under active development. Screenshots will be added upon release.
 
 ---
 
@@ -239,4 +240,4 @@ Haramain Tour (Laravel Backend)
     MySQL Database
 ```
 
-> HaramainQu communicates with this Laravel backend through a dedicated set of API endpoints under `/api/*`, authenticated using **Laravel Sanctum**.
+> 🚧 HaramainQu is currently under active development and communicates with this Laravel backend through a dedicated set of API endpoints under `/api/*`, authenticated using **Laravel Sanctum**.
