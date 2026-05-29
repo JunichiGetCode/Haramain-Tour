@@ -32,6 +32,7 @@ Route::prefix('content')->group(function () {
 // Alias routes — match Flutter app paths
 Route::get('/doa', [MobileContentController::class, 'doa']);
 Route::get('/kamus', [MobileContentController::class, 'kamus']);
+Route::get('/berita', [MobileContentController::class, 'berita']);
 Route::get('/ibadah/panduan', [MobileContentController::class, 'panduan']);
 Route::get('/ibadah/panduan/{id}', [MobileContentController::class, 'panduanDetail']);
 
@@ -44,6 +45,17 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/logout', [AuthApiController::class, 'logout']);
         Route::get('/me',      [AuthApiController::class, 'me']);
     });
+
+    // Tracking Ibadah
+    Route::get('/ibadah/tracking', [\App\Http\Controllers\Api\TrackingController::class, 'index']);
+    Route::post('/ibadah/tracking', [\App\Http\Controllers\Api\TrackingController::class, 'store']);
+    Route::post('/ibadah/tracking/reset', [\App\Http\Controllers\Api\TrackingController::class, 'reset']);
+
+    // Notifikasi Mobile
+    Route::get('/notifikasi', [\App\Http\Controllers\Api\NotificationApiController::class, 'index']);
+    Route::post('/notifikasi/{id}/read', [\App\Http\Controllers\Api\NotificationApiController::class, 'markAsRead']);
+    Route::post('/notifikasi/read-all', [\App\Http\Controllers\Api\NotificationApiController::class, 'markAllRead']);
+    Route::get('/notifikasi/unread-count', [\App\Http\Controllers\Api\NotificationApiController::class, 'unreadCount']);
 
     // Profile jamaah (data diri + pendaftaran + paket)
     Route::get('/profile', function (Request $request) {

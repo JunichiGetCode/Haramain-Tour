@@ -553,6 +553,66 @@
         </div>
         @endif
 
+        {{-- Kirim Notifikasi ke Jamaah --}}
+        @if($pendaftaran->status === 'approved')
+        <div class="action-section">
+            <h3><i class="fa-solid fa-bell"></i> Kirim Notifikasi ke Jamaah</h3>
+            <p style="font-size: 0.85rem; color: var(--text-gray); margin-bottom: 18px;">
+                Kirim pesan atau informasi penting kepada <strong>{{ $pendaftaran->user->name ?? $pendaftaran->nama_lengkap }}</strong>.
+                Notifikasi akan muncul di aplikasi mobile jamaah.
+            </p>
+
+            <form action="{{ route('admin.pendaftaran.notify', $pendaftaran->id) }}" method="POST" onsubmit="return confirm('Kirim notifikasi ke jamaah?')">
+                @csrf
+                <div style="margin-bottom: 14px;">
+                    <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy-color); margin-bottom: 6px;">
+                        <i class="fa-solid fa-heading"></i> Judul Notifikasi
+                    </label>
+                    <input type="text" name="judul" required maxlength="200"
+                        placeholder="Contoh: Informasi Keberangkatan"
+                        style="width: 100%; padding: 12px 16px; border: 2px solid rgba(0,0,0,0.08); border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 0.88rem; outline: none; transition: var(--transition);"
+                        onfocus="this.style.borderColor='var(--gold-color)'" onblur="this.style.borderColor='rgba(0,0,0,0.08)'"
+                    >
+                </div>
+
+                <div style="margin-bottom: 14px;">
+                    <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy-color); margin-bottom: 6px;">
+                        <i class="fa-solid fa-pen"></i> Isi Pesan
+                    </label>
+                    <textarea name="pesan" required maxlength="2000" rows="4"
+                        placeholder="Tuliskan pesan untuk jamaah..."
+                        style="width: 100%; padding: 12px 16px; border: 2px solid rgba(0,0,0,0.08); border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 0.88rem; outline: none; resize: vertical; transition: var(--transition);"
+                        onfocus="this.style.borderColor='var(--gold-color)'" onblur="this.style.borderColor='rgba(0,0,0,0.08)'"
+                    ></textarea>
+                </div>
+
+                <div style="margin-bottom: 18px;">
+                    <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy-color); margin-bottom: 6px;">
+                        <i class="fa-solid fa-tag"></i> Tipe Notifikasi
+                    </label>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 10px; border: 2px solid rgba(59,130,246,0.2); background: rgba(59,130,246,0.05); cursor: pointer; font-size: 0.82rem; font-weight: 600; color: #3b82f6;">
+                            <input type="radio" name="tipe" value="info" checked style="accent-color: #3b82f6;"> <i class="fa-solid fa-circle-info"></i> Info
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 10px; border: 2px solid rgba(16,185,129,0.2); background: rgba(16,185,129,0.05); cursor: pointer; font-size: 0.82rem; font-weight: 600; color: #10b981;">
+                            <input type="radio" name="tipe" value="success" style="accent-color: #10b981;"> <i class="fa-solid fa-circle-check"></i> Sukses
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 10px; border: 2px solid rgba(245,158,11,0.2); background: rgba(245,158,11,0.05); cursor: pointer; font-size: 0.82rem; font-weight: 600; color: #f59e0b;">
+                            <input type="radio" name="tipe" value="warning" style="accent-color: #f59e0b;"> <i class="fa-solid fa-clock"></i> Peringatan
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 10px; border: 2px solid rgba(239,68,68,0.2); background: rgba(239,68,68,0.05); cursor: pointer; font-size: 0.82rem; font-weight: 600; color: #ef4444;">
+                            <input type="radio" name="tipe" value="danger" style="accent-color: #ef4444;"> <i class="fa-solid fa-triangle-exclamation"></i> Penting
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-form-submit" style="background: linear-gradient(135deg, var(--gold-color), var(--gold-light)); color: white; margin-top: 0;">
+                    <i class="fa-solid fa-paper-plane"></i> Kirim Notifikasi
+                </button>
+            </form>
+        </div>
+        @endif
+
     </main>
 
     <!-- Image Preview Modal -->

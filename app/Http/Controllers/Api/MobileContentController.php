@@ -165,13 +165,13 @@ class MobileContentController extends Controller
             ->get()
             ->map(function ($berita) {
                 return [
-                    'id'        => $berita->id,
-                    'judul'     => $berita->judul,
-                    'slug'      => $berita->slug,
-                    'thumbnail' => $berita->thumbnail ? asset('storage/' . $berita->thumbnail) : null,
-                    'konten'    => $berita->konten,
-                    'created_at'=> $berita->created_at->toIso8601String(),
-                    'author'    => $berita->user?->name ?? 'Admin',
+                    'id'           => $berita->id,
+                    'title'        => $berita->judul,
+                    'content'      => strip_tags($berita->konten),
+                    'image_url'    => $berita->thumbnail ? asset('storage/' . $berita->thumbnail) : null,
+                    'category'     => 'umum',
+                    'author'       => $berita->user?->name ?? 'Admin',
+                    'published_at' => $berita->created_at->toIso8601String(),
                 ];
             });
 

@@ -150,5 +150,30 @@ class AdminPendaftaranController extends Controller
 
         return redirect()->back()->with('success', 'Status refund berhasil diubah menjadi Selesai.');
     }
+
+    /**
+     * Kirim notifikasi/pesan ke user dari halaman detail pendaftaran
+     */
+    public function sendNotification(Request $request, $id)
+    {
+        $request->validate([
+            'judul' => 'required|string|max:200',
+            'pesan' => 'required|string|max:2000',
+            'tipe'  => 'required|in:info,success,warning,danger',
+        ]);
+
+        $pendaftaran = Pendaftaran::with('user')->findOrFail($id);
+
+        Notifikasi::create([
+            'user_id'        => $pendaftaran->user_id,
+            'pendaftaran_id' => $pendaftaran->id,
+            'judul'          => $request->judul,
+            'pesan'          => $request->pesan,
+            'tipe'           => $request->tipe,
+        ]);
+
+        return redirect()->back()
+            ->with('success', 'Notifikasi berhasil dikirim ke ' . ($pendaftaran->user->name ?? $pendaftaran->nama_lengkap) . '.');
+    }
 }
 

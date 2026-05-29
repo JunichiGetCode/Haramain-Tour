@@ -12,6 +12,7 @@ class Pendaftaran extends Model
     protected $fillable = [
         'user_id',
         'paket_id',
+        'rombongan_id',
         'nama_lengkap',
         'nik',
         'tempat_lahir',
@@ -41,6 +42,10 @@ class Pendaftaran extends Model
         'persyaratan_accepted_at',
         'refund_status',
         'catatan_refund',
+        'kode_booking',
+        'nomor_paspor',
+        'nomor_kamar',
+        'fcm_token',
     ];
 
     protected $casts = [
@@ -58,6 +63,11 @@ class Pendaftaran extends Model
     public function paket()
     {
         return $this->belongsTo(Paket::class);
+    }
+
+    public function rombongan()
+    {
+        return $this->belongsTo(Rombongan::class);
     }
 
     public function notifikasis()

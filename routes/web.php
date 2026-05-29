@@ -169,6 +169,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/pendaftaran/{id}/reject', [AdminPendaftaranController::class, 'reject'])->name('pendaftaran.reject');
     Route::post('/pendaftaran/{id}/process-refund', [AdminPendaftaranController::class, 'processRefund'])->name('pendaftaran.process-refund');
     Route::post('/pendaftaran/{id}/complete-refund', [AdminPendaftaranController::class, 'completeRefund'])->name('pendaftaran.complete-refund');
+    Route::post('/pendaftaran/{id}/notify', [AdminPendaftaranController::class, 'sendNotification'])->name('pendaftaran.notify');
 
 
     // Pengaturan Mobile App

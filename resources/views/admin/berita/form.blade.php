@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">Isi Berita</label>
-                            <textarea name="konten" id="summernote" required>{!! old('konten', $berita->konten ?? '') !!}</textarea>
+                            <textarea name="konten" id="summernote">{!! old('konten', $berita->konten ?? '') !!}</textarea>
                         </div>
                     </div>
                     <div>
@@ -88,7 +88,7 @@
                                 @if(isset($berita) && $berita->thumbnail)
                                     <img loading="lazy" src="{{ asset('storage/' . $berita->thumbnail) }}" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
                                 @endif
-                                <input type="file" name="thumbnail" class="form-control" accept="image/*" {{ !isset($berita) ? 'required' : '' }}>
+                                <input type="file" name="thumbnail" class="form-control" accept="image/*">
                             </div>
                             <button type="submit" class="btn-submit"><i class="fa-solid fa-save"></i> Simpan Berita</button>
                         </div>
