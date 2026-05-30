@@ -46,6 +46,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/me',      [AuthApiController::class, 'me']);
     });
 
+    // Ibadah Progress (Checklist harian)
+    Route::get('/ibadah/progress', [\App\Http\Controllers\Api\IbadahProgressController::class, 'index']);
+    Route::post('/ibadah/progress', [\App\Http\Controllers\Api\IbadahProgressController::class, 'update']);
+
     // Tracking Ibadah
     Route::get('/ibadah/tracking', [\App\Http\Controllers\Api\TrackingController::class, 'index']);
     Route::post('/ibadah/tracking', [\App\Http\Controllers\Api\TrackingController::class, 'store']);
